@@ -29,36 +29,51 @@
 | ------------ | ------------- | ----------- |
 | item-name    | string        | null: false |
 | information  | text          | null: false |
-| category     | string          | null: false |
-| status       | string    |             |
-| shipping-fee | string
-| prefecture   | string
-| schedule     | string
-| price        | integer
-| user         | 
-
-
-
-
-
-
-
-
+| category     | string        | null: false |
+| status       | string        | null: false |
+| shipping-fee | string        | null: false |
+| prefecture   | string        | null: false |
+| schedule     | string        | null: false |
+| price        | integer       | null: false |
+| user         | references    |             |
 
 ### Association
 
 - belongs_to :user
-- has_many :comments
+- has_one  :purchase
+- has_one  :delivery
+- has_one  :comment
 
-## comments テーブル
+## purchase テーブル
 
-| Column    | Type       | Options     |
-| ------    | ---------- | ----------- |
-| text      | text       | null: false |
-| user      | references |             |
-| prototype | references |             |
+| Column           | Type       | Options     |
+| ---------------- | ---------- | ----------- |
+| card-number      | integer    | null: false |
+| expiration-month | integer    | null: false |
+| expiration-year  | integer    | null: false |
+| security-code    | integer    | null: false |
+| user             | references |             |
+| item             | references |             |
 
 ### Association
 
-- belongs_to :prototype
 - belongs_to :user
+- belongs_to :item
+
+## delivery テーブル
+
+| Column      | Type       | Options     |
+| ----------- | ---------- | ----------- |
+| postal-code | integer    | null: false |
+| prefecture  | string     | null: false |
+| city        | string     | null: false |
+| address     | string     | null: false |
+| building    | string     |             |
+| tell        | integer    | null: false |
+| user        | references |             |
+| item        | references |             |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item

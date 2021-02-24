@@ -1,24 +1,64 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column            | Type   | Options     |
+| ----------------- | ------ | ----------- |
+| nickname          | string | null: false |
+| email             | string | null: false |
+| password          | string | null: false |
+| last-name         | string | null: false |
+| first-name        | string | null: false |
+| last-name(ruby)   | string | null: false |
+| first-name(ruby)  | string | null: false |
+| birthday-year     | string | null: false |
+| birthday-month    | string | null: false |
+| birthday-day      | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_one  :purchase
+- has_one  :delivery
+- has_one  :comment
 
-* Configuration
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column       | Type          | Options     |
+| ------------ | ------------- | ----------- |
+| item-name    | string        | null: false |
+| information  | text          | null: false |
+| category     | string          | null: false |
+| status       | string    |             |
+| shipping-fee | string
+| prefecture   | string
+| schedule     | string
+| price        | integer
+| user         | 
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+
+
+
+
+
+### Association
+
+- belongs_to :user
+- has_many :comments
+
+## comments テーブル
+
+| Column    | Type       | Options     |
+| ------    | ---------- | ----------- |
+| text      | text       | null: false |
+| user      | references |             |
+| prototype | references |             |
+
+### Association
+
+- belongs_to :prototype
+- belongs_to :user

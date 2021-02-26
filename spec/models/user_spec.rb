@@ -8,8 +8,6 @@ RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
     context '新規登録ができる場合' do
       it 'ニックネーム、メールアドレス、パスワード、パスワード（確認）、ユーザー本名、ユーザー本名カナ、生年月日が存在すれば登録できること' do
-        @user.password = '55555a'
-        @user.password_confirmation = '55555a'
         expect(@user).to be_valid
       end
     end

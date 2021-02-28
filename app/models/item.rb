@@ -12,8 +12,8 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :schedule_id
     validates :price
+    validates :image
   end
-
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
@@ -21,7 +21,9 @@ class Item < ApplicationRecord
     validates :shipping_fee_id
     validates :prefecture_id
     validates :schedule_id
-  end 
+  end
+
+  validates_inclusion_of :price, in:300..9999999, message: "Out of setting range"
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category

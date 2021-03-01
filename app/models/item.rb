@@ -1,8 +1,7 @@
 class Item < ApplicationRecord
-  
   belongs_to :user
   has_one_attached :image
-  
+
   with_options presence: true do
     validates :item_name
     validates :information
@@ -23,7 +22,7 @@ class Item < ApplicationRecord
     validates :schedule_id
   end
 
-  validates_inclusion_of :price, in:300..9999999, message: "Out of setting range"
+  validates_inclusion_of :price, in: 300..9_999_999, message: 'Out of setting range'
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -31,5 +30,4 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee
   belongs_to :prefecture
   belongs_to :schedule
-
 end

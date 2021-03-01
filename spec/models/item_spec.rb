@@ -11,7 +11,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
     end
-    
+
     context '商品の出品ができない場合' do
       it '商品画像が空では出品できないこと' do
         @item.image = nil
@@ -40,7 +40,7 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーがid:1では出品できないこと' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
 
       it '商品の状態が空では出品できないこと' do
@@ -52,7 +52,7 @@ RSpec.describe Item, type: :model do
       it '商品の状態がid:1では出品できないこと' do
         @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 1")
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
       end
 
       it '配送料の負担が空では出品できないこと' do
@@ -64,9 +64,9 @@ RSpec.describe Item, type: :model do
       it '配送料の負担がid:1では出品できないこと' do
         @item.shipping_fee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping fee must be other than 1')
       end
-      
+
       it '発送元の地域が空では出品できないこと' do
         @item.prefecture_id = ''
         @item.valid?
@@ -76,7 +76,7 @@ RSpec.describe Item, type: :model do
       it '発送元の地域がid:1では出品できないこと' do
         @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
       it '発送までの日数が空では出品できないこと' do
@@ -88,7 +88,7 @@ RSpec.describe Item, type: :model do
       it '発送までの日数がid:1では出品できないこと' do
         @item.schedule_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Schedule must be other than 1")
+        expect(@item.errors.full_messages).to include('Schedule must be other than 1')
       end
 
       it '販売価格が空では出品できないこと' do
@@ -100,19 +100,19 @@ RSpec.describe Item, type: :model do
       it '販売価格が300円未満では出品できないこと' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
 
       it '販売価格が10000000円以上では出品できないこと' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
 
       it '販売価格が全角数字では出品できないこと' do
         @item.price = '５００００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
     end
   end

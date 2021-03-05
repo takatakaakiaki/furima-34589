@@ -14,7 +14,7 @@ class PurchaseDelivery
 
   validates :prefecture_id, numericality: {other_than: 1}
   validates :building, presence: true
-
+  
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
     Delivery.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, tell: tell, purchase_id: purchase.id)

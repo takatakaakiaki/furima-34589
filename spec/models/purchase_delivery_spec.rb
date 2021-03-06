@@ -34,7 +34,7 @@ RSpec.describe PurchaseDelivery, type: :model do
       end
 
       it '郵便番号はハイフンがないと購入できないこと' do
-        @purchase_delivery.postal_code = 1_234_567
+        @purchase_delivery.postal_code = "1234567"
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
@@ -70,13 +70,13 @@ RSpec.describe PurchaseDelivery, type: :model do
       end
 
       it '電話番号は12桁以上だと購入できないこと' do
-        @purchase_delivery.tell = 123_456_789_012
+        @purchase_delivery.tell = "123456789012"
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include('Tell is invalid')
       end
 
       it '電話番号はハイフンがあると購入できないこと' do
-        @purchase_delivery.tell = 123 - 4567 - 8901
+        @purchase_delivery.tell = "123 - 4567 - 8901"
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include('Tell is invalid')
       end

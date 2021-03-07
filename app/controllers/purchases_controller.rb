@@ -4,11 +4,7 @@ class PurchasesController < ApplicationController
   before_action :move_to_index, only: [:index, :create]
 
   def index
-    if @item.purchase.present?
-      redirect_to root_path
-    else
-      @purchase_delivery = PurchaseDelivery.new
-    end
+    @purchase_delivery = PurchaseDelivery.new
   end
 
   def create
@@ -44,7 +40,7 @@ class PurchasesController < ApplicationController
   end  
 
   def move_to_index
-    if current_user.id == @item.user_id
+    if current_user.id == @item.user_id || @item.purchase.present?
         redirect_to root_path
     end
   end

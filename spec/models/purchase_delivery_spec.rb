@@ -76,7 +76,7 @@ RSpec.describe PurchaseDelivery, type: :model do
       end
 
       it '電話番号はハイフンがあると購入できないこと' do
-        @purchase_delivery.tell = "123 - 4567 - 8901"
+        @purchase_delivery.tell = "123-4567-8901"
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include('Tell is invalid')
       end
